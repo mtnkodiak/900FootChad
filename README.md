@@ -1,5 +1,5 @@
 # 900FootChad
-A discord bot for Chad fans (SNL character)
+A discord bot for Chad fans (SNL character).  Written in Javascript using the discord.js library.
 
 Command Syntax:
 
