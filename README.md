@@ -11,6 +11,6 @@ Command Syntax:
     
   [under development]
   
-  =listen [on | off] 
+  =listen [on | off]
     Invite 9FChad to your voice channel (if he's not there already) to listen for anyone saying "OK" in voice chat (on), or tell him to stop listening (off)
     
