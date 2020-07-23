@@ -1,5 +1,5 @@
 # 900FootChad
-A discord bot for Chad fans (SNL character).  Written in Javascript using the discord.js library.  9FChad's ultimate goal is to listen to the voice channel he's in and respond with an "OK" if he hears anyone say "OK" verbally in chat.  Receiving audio in discord.js is challenging...  Let's hope 9FChad can pull it off.
+A discord bot for Chad fans (SNL character).  Written in Javascript using the discord.js library, as well as MongoDB.  9FChad's ultimate goal is to listen to the voice channel he's in and respond with an "OK" if he hears anyone say "OK" verbally in chat.  Receiving audio in discord.js is challenging...  Let's hope 9FChad can pull it off.
 
 Command Syntax:
 
