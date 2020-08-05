@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const config = require('./config');
 const fs = require('fs');
 const Enmap = require("enmap");
+const { exit } = require('process');
 const discordClient = new Discord.Client();
 
 // read in all of our configurations
@@ -37,5 +38,10 @@ fs.readdir("./commands/", (err, files) => {
     });
 });
 
-
-discordClient.login(config.discordApiToken);
+try {
+    console.log("Logging in...");
+    discordClient.login(config.discordApiToken);
+} catch (error) {
+    console.log("Could not login!  Error: " + error);
+    
+}

@@ -10,7 +10,7 @@ async function playChad(channel, reps) {
 	rndnum = Math.floor(Math.random() * 47) + 1;
 
 	filenamestr = 'static/ok' + rndnum + '.mp3';
-	const dispatcher = connection.play(filenamestr);
+	const dispatcher = await connection.play(filenamestr);
 	dispatcher.on('start', () => {
 		console.log('audio ' + filenamestr + ' is playing');
 	});
