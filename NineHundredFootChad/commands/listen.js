@@ -1,7 +1,7 @@
 exports.run = async (client, message, toggle) => {
 
 	const Discord = require('discord.js');
-	const starttalk = require('../voiceutils/starttalk.js');
+//	const starttalk = require('../voiceutils/starttalk.js');
 
 	console.log('toggle = "' + toggle + '"');
 
@@ -45,9 +45,11 @@ exports.run = async (client, message, toggle) => {
 		if (toggle = "on") {
 			//console.log("toggle on, starttalk.starttalk() = " + starttalk.startTalk());
 			client.speechEnabled = true;
+			message.reply("Chad is listening.");
 			//client.on(('guildMemberSpeaking', starttalk.startTalk()));
 		} else { //toggle = "off"
 			client.speechEnabled = false;
+			message.reply("Chad is no longer listening.");
 		}
 
 	} else {

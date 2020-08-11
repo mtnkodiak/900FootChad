@@ -49,6 +49,17 @@ module.exports = async (client, member, speaking) => {
                 console.log(`I just heard ${member.displayName} say OK!  Calling playChad)...`);
                 await playChad.playChad(member.voice.channel, 1);
             }
+            
+            if (client.secretWordGame == true) {
+            	console.log("looking for secret word: " + client.secretWordGameWord);
+            	if (transcription.includes(client.secretWordGameWord)) {
+            		client.secretWordGameChannel.send("OMG you said the secret word!  It was: " + client.secretWordGameWord);
+            		client.secretWordGameChannel.send(`${member.displayName} was the winner!`);
+            		
+            		client.secretWordGameWord = "";
+            		client.secretWordGame = false;
+            	}
+            }
         });
 
     const convertTo1ChannelStream = new ConvertTo1ChannelStream();
