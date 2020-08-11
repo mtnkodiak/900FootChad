@@ -7,12 +7,19 @@ const playChad = require('../voiceutils/playChad.js')
 module.exports = async (client, member, speaking) => {
 
     console.log("In guildMemberSpeaking event handler...");
-    console.log("client.speechenadled = " + client.speechEnabled);
+    console.log("client = " + client);
+    console.log("client.speechEnabled = " + client);
     
     if (!speaking || !client.speechEnabled) return;
+    
+    //don't listen to bots (like Groovy)
+    if (member.user.bot) {
+    	console.log(`Ignoring ${member.displayName} because its a bot!`);
+    	return;
+    }
 
     console.log(`I'm listening to ${member.displayName}`);
-
+    
     const voiceConnection = client.voiceConnection;
     const receiver = voiceConnection.receiver;
 
@@ -39,8 +46,7 @@ module.exports = async (client, member, speaking) => {
 
             // play an audio file if keyword is detected
             if (transcription.includes("okay")) {
-                console.log(`I just heard ${member.displayName} say OK!`);
-                // await Dispatcher.playFile(voiceConnection, client.config["twice-clip"]);
+                console.log(`I just heard ${member.displayName} say OK!  Calling playChad)...`);
                 await playChad.playChad(member.voice.channel, 1);
             }
         });
