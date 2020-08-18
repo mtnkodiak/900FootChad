@@ -51,7 +51,7 @@ module.exports = async (client, member, speaking) => {
             }
             
             if (client.secretWordGame == true) {
-            	console.log("looking for secret word: " + client.secretWordGameWord);
+            	//console.log("looking for secret word: " + client.secretWordGameWord);
             	if (transcription.includes(client.secretWordGameWord)) {
             		client.secretWordGameChannel.send("OMG you said the secret word!  It was: " + client.secretWordGameWord);
             		client.secretWordGameChannel.send(`${member.displayName} was the winner!`);
