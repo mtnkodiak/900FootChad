@@ -8,9 +8,9 @@ module.exports = async (client, member, speaking) => {
 
     console.log("In guildMemberSpeaking event handler...");
     console.log("client = " + client);
-    console.log("client.speechEnabled = " + client);
+    console.log("client.okEnabled = " + client.okEnabled);
     
-    if (!speaking || !client.speechEnabled) return;
+    if (!speaking) return;
     
     //don't listen to bots (like Groovy)
     if (member.user.bot) {
@@ -45,9 +45,11 @@ module.exports = async (client, member, speaking) => {
             console.log(`Transcription: ${transcription}`);
 
             // play an audio file if keyword is detected
-            if (transcription.includes("okay")) {
-                console.log(`I just heard ${member.displayName} say OK!  Calling playChad)...`);
-                await playChad.playChad(member.voice.channel, 1);
+            if (client.okEnabled) {
+            	if (transcription.includes("okay")) {
+            		console.log(`I just heard ${member.displayName} say OK!  Calling playChad)...`);
+            		await playChad.playChad(member.voice.channel, 1);
+            	}            	
             }
             
             if (client.secretWordGame == true) {
