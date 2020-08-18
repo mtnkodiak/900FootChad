@@ -9,8 +9,12 @@ module.exports = async (client, member, speaking) => {
     console.log("In guildMemberSpeaking event handler...");
     console.log("client = " + client);
     console.log("client.okEnabled = " + client.okEnabled);
+    console.log("client.secretWordGame = " + client.secretWordGame);
     
     if (!speaking) return;
+    
+    //TODO: find a better way to handle this-- dont transcribe unless we need to.
+    if (!client.okEnabled && !client.secretWordGame) return;
     
     //don't listen to bots (like Groovy)
     if (member.user.bot) {
@@ -53,7 +57,7 @@ module.exports = async (client, member, speaking) => {
             }
             
             if (client.secretWordGame == true) {
-            	//console.log("looking for secret word: " + client.secretWordGameWord);
+            	console.log("looking for secret word... ");
             	if (transcription.includes(client.secretWordGameWord)) {
             		client.secretWordGameChannel.send("OMG you said the secret word!  It was: " + client.secretWordGameWord);
             		client.secretWordGameChannel.send(`${member.displayName} was the winner!`);

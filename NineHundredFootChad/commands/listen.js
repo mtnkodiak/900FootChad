@@ -42,10 +42,10 @@ exports.run = async (client, message, toggle) => {
 		// 			console.log(member.displayName + ' stopped talking');
 		// 		}
 		// 	};
-		if (toggle = "on") {
+		if (toggle == "on") {
 			//console.log("toggle on, starttalk.starttalk() = " + starttalk.startTalk());
 			client.okEnabled = true;
-			message.reply("Chad is listening for OKs.");
+			message.reply("Chad is listening for OKs."); 
 			//client.on(('guildMemberSpeaking', starttalk.startTalk()));
 		} else { //toggle = "off"
 			client.okEnabled = false;
