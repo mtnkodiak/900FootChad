@@ -6,9 +6,12 @@ const googleSpeechClient = new googleSpeech.SpeechClient();
 const playChad = require('../voiceutils/playChad.js')
 module.exports = async (client, member, speaking) => {
 
-    console.log("In guildMemberSpeaking event handler...");
-    console.log("client = " + client);
-    console.log("client.okEnabled = " + client.okEnabled);
+    console.log("--------In guildMemberSpeaking event handler...");
+    console.log("\tclient = " + client);
+    console.log("\tclient.voiceConnection = " + client.voiceConnection);
+    console.log("\tclient.okEnabled = " + client.okEnabled);
+    console.log("\tspeaking = " + speaking); 
+    console.log("\tmember = " + member);
     
     if (!speaking) return;
     
@@ -45,7 +48,7 @@ module.exports = async (client, member, speaking) => {
             console.log(`Transcription: ${transcription}`);
 
             // play an audio file if keyword is detected
-            if (client.okEnabled) {
+            if (client.okEnabled == true) {
             	if (transcription.includes("okay")) {
             		console.log(`I just heard ${member.displayName} say OK!  Calling playChad)...`);
             		await playChad.playChad(member.voice.channel, 1);
@@ -56,10 +59,13 @@ module.exports = async (client, member, speaking) => {
             	//console.log("looking for secret word: " + client.secretWordGameWord);
             	if (transcription.includes(client.secretWordGameWord)) {
             		client.secretWordGameChannel.send("OMG you said the secret word!  It was: " + client.secretWordGameWord);
-            		client.secretWordGameChannel.send(`${member.displayName} was the winner!`);
+                    client.secretWordGameChannel.send(`${member.displayName} was the winner!`);
+                    
             		
             		client.secretWordGameWord = "";
             		client.secretWordGame = false;
+
+                    await playChad.playCelebration(member.voice.channel);
             	}
             }
         });

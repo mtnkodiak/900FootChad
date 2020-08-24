@@ -1,0 +1,257 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+
+class Result {
+
+    /*
+     * Complete the 'maxTrailing' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts INTEGER_ARRAY levels as parameter.
+     */
+
+    public static int maxTrailing(List<Integer> levels) {
+    // Write your code here
+        int max = -1;
+
+        //brute force
+        Integer[] arr = new Integer[levels.size()];
+        arr=levels.toArray(arr);
+
+        //System.out.println("arr.length = " + arr.length);
+        for (int i=arr.length-1; i>=1; i--) { //start at the last element
+            for (int j=i-1; j>=0; j--) { //look at all elements before to find largest diff
+                //System.out.println("i=" + i + ", j=" + j);
+                //System.out.println("arr[i] = " + arr[i]);
+                //System.out.println("arr[j] = " + arr[j]);
+                if ((arr[i] - arr[j]) > max) {
+                    max = arr[i]-arr[j];
+                }
+            }
+        }
+
+        //optimized version
+        for (Integer i : levels) {
+            
+        }
+
+        return max;
+    }
+
+}
+public class Solution {
+
+=======================================
+
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.regex.*;
+
+
+class Result {
+
+    //in retrospect, I'm not sure I needed this class!  But I used it anyway.
+    public static class Item {
+        public int priority;
+        public int value;
+
+        public Item(int value, int priority) {
+            this.priority = priority;
+            this.value = value;
+        }
+    }
+
+    /*
+     * Complete the 'cacheContents' function below.
+     *
+     * The function is expected to return an INTEGER_ARRAY.
+     * The function accepts 2D_INTEGER_ARRAY callLogs as parameter.
+     */
+
+    public static List<Integer> cacheContents(List<List<Integer>> callLogs) {
+    // Write your code here
+        Map<Integer, Item> cacheMap = new HashMap<>();
+        Map<Integer, Item> memoryMap = new HashMap<>();
+
+        //operations is a Map of freqmaps for each timestamp
+        Map<Integer, Map<Integer, Integer>> operations = new HashMap<>();
+
+        int totalTime = callLogs.size();
+        int numItems = callLogs.get(0).size();
+        System.out.println("totalTime = " + totalTime);
+        System.out.println("numItems = " + numItems);
+
+        //init memoryMap with everything in it
+        for (int i=0; i<numItems; i++) {
+            memoryMap.put(i+1, new Item(i+1, 0));
+        }
+
+        //Collections.sort(callLogs);
+
+        //fill operations map to iterate through later
+        for (List<Integer> operation : callLogs) {
+            int itemId = operation.get(1);
+            int timeStamp = operation.get(0);
+
+            if (operations.containsKey(timeStamp)) { //add item access to existing timestamp operation
+                //System.out.println("existing operation entry for timestamp = " + timeStamp);
+                Map<Integer, Integer> freqMap = operations.get(timeStamp);
+                if (freqMap != null) {
+                    Integer curFreq = freqMap.get(itemId);
+                    if (curFreq != null) {
+                        freqMap.put(itemId, curFreq + 1);
+                    } else {
+                        freqMap.put(itemId, 1);
+                    }
+                } else {
+                    freqMap = new HashMap<Integer, Integer>();
+                    freqMap.put(itemId, 1);
+                }
+                //System.out.println("storing new freqmap to operations:" + freqMap);
+                operations.put(timeStamp, freqMap);
+
+            } else { //add new operation entry with this item access
+                //System.out.println("new operation entry for timestamp = " + timeStamp);
+                Map<Integer, Integer> newFreqMap = new HashMap<>();
+                newFreqMap.put(itemId, 1);
+                operations.put(timeStamp, newFreqMap);
+            }
+        }
+
+        System.out.println("operations = " + operations);
+        //now operations map is filled with each access per timestamp
+
+        //execute operations in order, keeping track of memory and cache
+        for (int timeStamp = 1; timeStamp <= totalTime; timeStamp++) {
+            
+            System.out.println("top of timestamp loop\n\ttimeStamp = " + timeStamp);
+            System.out.println("\tcacheMap = " + cacheMap);
+            System.out.println("\tmemMap = " + memoryMap);
+
+            Map<Integer, Integer> accessFreqMap = operations.get(timeStamp);
+            System.out.println("\taccessFreqMap = " + accessFreqMap);
+
+            List<Integer> accessList = new ArrayList<>(); //keep track of values we've accessed
+
+            if (accessFreqMap != null) {
+                for (int val=1; val <= numItems; val++) {
+                    Integer freq = accessFreqMap.get(val);
+                    System.out.println("top of val loop, val=" + val + ", freq = " + freq);
+
+                    boolean inCache = cacheMap.containsKey(val);
+                    boolean inMemory = memoryMap.containsKey(val);
+
+                    if (inMemory && inCache) {
+                        System.out.println("value in both cache and memory!  ERROR");
+                    }
+                    //Assert.assertFalse(inCache && inMemory);
+
+                    //update memory
+                    if (inMemory) {
+                        Item memItem = memoryMap.get(val);
+                        System.out.println("Found val " + val + " in memoryMap with priority = " + memItem.priority);
+
+                        if (freq != null) {
+                            if (freq>1) {
+                                memItem.priority = memItem.priority + 2*freq;
+                            } else {
+                                memItem.priority = memItem.priority + 2;
+                            }
+                        } else { //not accessed, decrement
+                            if (memItem.priority > 0) {
+                                memItem.priority--;
+                            }
+                        }
+                        //move back to cache if necessary
+                        if (memItem.priority > 5) {
+                            System.out.println("moving memItem for val=" + val + " to cache");
+                            memoryMap.remove(val);
+                            cacheMap.put(val, memItem);
+                        }
+
+                        accessList.add(val);
+                    }
+                    //update cache
+                    if (inCache) {
+                        Item cacheItem = cacheMap.get(val);
+                        System.out.println("Found val " + val + " in cacheMap with priority=" + cacheItem.priority);
+                        if (freq != null) {
+                            if (freq>1) {
+                                cacheItem.priority = cacheItem.priority + 2*freq;
+                            } else {
+                                cacheItem.priority = cacheItem.priority + 2;
+                            }
+                        } else { //not accessed, decrement
+                            if (cacheItem.priority> 0) {
+                                cacheItem.priority--;
+                            }
+                        }
+
+                        //move back to memory if necessary
+                        if (cacheItem.priority <= 3) {
+                            System.out.println("moving memItem for val=" + val + " back to memory");
+                            cacheMap.remove(val);
+                            memoryMap.put(val, cacheItem);
+                        }
+
+                        accessList.add(val);
+                    }
+                }
+            } //if accessList != null
+
+            //go thru all Items and reduce priority for items we didn't modify/access above
+            //memory
+            for (Item memItem : memoryMap.values()) {
+                if (!accessList.contains(memItem.value)) { //not accessed, decrement priority
+                    if (memItem.priority > 0) {
+                        memItem.priority = memItem.priority - 1;
+                        if (memItem.priority > 5) {
+                            memoryMap.remove(memItem.value);
+                            cacheMap.put(memItem.value, memItem);
+                        }
+                    }
+                }
+            }
+            //cache
+            for (Item cacheItem : memoryMap.values()) {
+                if (!accessList.contains(cacheItem.value)) { //not accessed, decrement priority
+                    if (cacheItem.priority > 0) {
+                        cacheItem.priority = cacheItem.priority - 1;
+                        if (cacheItem.priority > 5) {
+                            cacheMap.remove(cacheItem.value);
+                            memoryMap.put(cacheItem.value, cacheItem);
+                        }
+
+                    }
+
+                }
+            }
+        }
+
+        System.out.println("FINAL cache contents: " + cacheMap);
+
+        //return cache list here
+        List<Integer> returnList = new ArrayList<>();
+        for (Item item : cacheMap.values()) {
+            System.out.println("item = " + item);
+            System.out.println("item.value = " + item.value);
+            returnList.add(item.value);
+        }
+
+        System.out.println("resulting list: " + returnList);
+        return returnList;
+    }
+
+}
+
+public class Solution {

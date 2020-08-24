@@ -9,17 +9,17 @@ module.exports = async (client) => {
     client.user.setActivity("my bits", { type: "WATCHING"})
 
     
-    // const guild = client.guilds.cache.get(client.config.cache.guildId);
+    // const guild = client.guilds.cache.get("149664473240698880");
     // if (!guild) {
     //     throw new Error('Cannot find guild.')
     // }
-    // // const voiceChannel = guild.channels.find(ch => {
-    // //     return ch.name === client.config.voiceChannelName && ch.type === 'voice'
-    // // });
-    // // if (!voiceChannel) {
-    // //     throw new Error('Cannot find voice channel.')
-    // // }
-    // // console.log(`Voice channel: ${voiceChannel.id} ${voiceChannel.name}`);
+    // const voiceChannel = guild.channels.cache.find(ch => {
+    //     return ch.name === client.config.voiceChannelName && ch.type === 'voice'
+    // });
+    // if (!voiceChannel) {
+    //     throw new Error('Cannot find voice channel.')
+    // }
+    // console.log(`Voice channel: ${voiceChannel.id} ${voiceChannel.name}`);
 
     // const textChannel = guild.channels.cache.find(ch => {
     //     return ch.name === client.config.textChannelName && ch.type === 'text'

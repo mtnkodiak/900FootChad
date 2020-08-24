@@ -7,6 +7,14 @@ exports.run = async (client, message, toggle) => {
 
 	if (toggle == "") {
 		message.reply("Syntax: =listen [on|off]");
+
+		isItOn = "";
+		if (client.secretWordGame != true) {
+			isItOn = "NOT";
+		}
+
+
+		message.reply("Chad is currently " + isItOn + " listening for OKs.");
 		return;
 	}
 
@@ -42,7 +50,7 @@ exports.run = async (client, message, toggle) => {
 		// 			console.log(member.displayName + ' stopped talking');
 		// 		}
 		// 	};
-		if (toggle = "on") {
+		if (toggle == "on") {
 			//console.log("toggle on, starttalk.starttalk() = " + starttalk.startTalk());
 			client.okEnabled = true;
 			message.reply("Chad is listening for OKs.");
