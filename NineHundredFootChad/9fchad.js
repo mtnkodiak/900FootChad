@@ -41,6 +41,10 @@ fs.readdir("./commands/", (err, files) => {
 try {
     console.log("Logging in...");
     discordClient.login(config.discordApiToken);
+    discordClient.secretWordGame = false;
+    discordClient.okEnabled = true;
+
+
 } catch (error) {
     console.log("Could not login!  Error: " + error);
     

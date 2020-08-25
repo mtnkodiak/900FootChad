@@ -1,14 +1,8 @@
 const playChad = require("../voiceutils/playChad");
 
 exports.run = (client, message, reps) => {
-	//const Playchad = require('playChad');
-	const voiceutils = require("../voiceutils/playChad");
 
-	// name: 'ok',
-	// description: 'Chad says OK!',
-	//async execute(message, client, mongoClient, reps = 1) {
 	const Discord = require('discord.js');
-	// const client = new Discord.Client();
 
 	console.log('reps = "' + reps + '"');
 

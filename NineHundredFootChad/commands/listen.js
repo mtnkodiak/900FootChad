@@ -7,6 +7,14 @@ exports.run = async (client, message, toggle) => {
 
 	if (toggle == "") {
 		message.reply("Syntax: =listen [on|off]");
+
+		isItOn = "";
+		if (client.secretWordGame != true) {
+			isItOn = "NOT";
+		}
+
+
+		message.reply("Chad is currently " + isItOn + " listening for OKs.");
 		return;
 	}
 
