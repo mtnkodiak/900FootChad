@@ -1,2 +1,7 @@
 /config.json
 /node_modules/
+/user_audio
+/user_audio-ORIG
+/user_audio-ORIG.pcm
+/user_audio-tweak (copy).wav
+/user_audio-tweak.pcm

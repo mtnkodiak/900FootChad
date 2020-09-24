@@ -1,12 +1,13 @@
 require('dotenv').config();
 const Discord = require('discord.js');
+const Vosk = require('vosk-js');
 const config = require('./config');
 const fs = require('fs');
 const Enmap = require("enmap");
 const { exit } = require('process');
 const discordClient = new Discord.Client();
 
-// read in all of our configurations
+// read in all of our configurations 
 discordClient.config = config;
 
 discordClient.commands = new Discord.Collection(); // Collection for all commands
