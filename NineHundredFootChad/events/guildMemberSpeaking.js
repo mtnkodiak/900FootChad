@@ -2,13 +2,11 @@ const { Transform } = require('stream');
 const websocket = require('ws');
 const fs = require('fs');
 const waveResampler = require('wave-resampler');
-//var pcm = require('pcm-stream');
 const wav = require('wav');
 const SampleRate = require('node-libsamplerate');
 const Dispatcher = require('../promised/Dispatcher');
-//const googleSpeech = require('@google-cloud/speech');
-//const googleSpeechClient = new googleSpeech.SpeechClient();
 const playChad = require('../voiceutils/playChad.js')
+const config = require('./config');
 
 module.exports = async (client, member, speaking) => { 
     
@@ -40,7 +38,7 @@ module.exports = async (client, member, speaking) => {
 
     //    const ws = new websocket('wss://api.alphacephei.com/asr/en/');
     console.log("creating new websocket to vosk server (with callbacks)...");
-    const ws = new websocket('ws://localhost:2700');
+    const ws = new websocket(`ws://${config.voskServer}`);
 
     ws.on('open', async function open() {
         console.log("In 'open' callback...");
