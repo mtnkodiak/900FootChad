@@ -27,6 +27,9 @@ exports.run = async (client, message, toggle) => {
 		client.secretWordStartedTime = new Date();
 
 		console.log("secret word chosen: " + client.secretWordGameWord);
+		
+	    client.voiceConnection = await message.member.voice.channel.join();
+
 	} else if (toggle == "off") { //off
 		message.channel.send("Secretword game stopped.  The secret word was: " + client.secretWordGameWord);
 		let duration = Date.now() - client.secretWordStartedTime;
