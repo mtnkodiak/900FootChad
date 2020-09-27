@@ -1,7 +1,7 @@
 require('dotenv').config();
+const config = require('./config');
 const Discord = require('discord.js');
 const Vosk = require('vosk-js');
-const config = require('./config');
 const fs = require('fs');
 const Enmap = require("enmap");
 const { exit } = require('process');

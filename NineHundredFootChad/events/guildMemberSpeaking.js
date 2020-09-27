@@ -1,3 +1,5 @@
+require('dotenv').config();
+const config = require('../config');
 const { Transform } = require('stream');
 const websocket = require('ws');
 const fs = require('fs');
@@ -6,7 +8,6 @@ const wav = require('wav');
 const SampleRate = require('node-libsamplerate');
 const Dispatcher = require('../promised/Dispatcher');
 const playChad = require('../voiceutils/playChad.js')
-const config = require('./config');
 
 module.exports = async (client, member, speaking) => { 
     
