@@ -116,11 +116,11 @@ module.exports = async (client, member, speaking) => {
             if (client.secretWordGame == true) {
                 //console.log("looking for secret word: " + client.secretWordGameWord);
 //            	if (transcription.includes(client.secretWordGameWord)) {
-            	if (RegExp( '\\b' + client.secretWordGameWord + '\\b', 'i').test(transcription)) {
+            	if (RegExp( '\\b' + client.secretWordGameWord + '\\b', 'i').test(transcript)) {
             		client.secretWordGameChannel.send("OMG you said the secret word!  It was: " + client.secretWordGameWord);
                     client.secretWordGameChannel.send(`${member.displayName} was the winner!`);
             		
-            		client.secretWordGameChannel.send(`CONTEXT: I heard ${member.displayName} mutter the following: "` + transcription + "\"");
+            		client.secretWordGameChannel.send(`CONTEXT: I heard ${member.displayName} mutter the following: "` + transcript + "\"");
             		
             		client.secretWordGameWord = "";
             		client.secretWordGame = false;
