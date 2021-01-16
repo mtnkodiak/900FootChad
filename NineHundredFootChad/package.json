@@ -17,7 +17,7 @@
   "dependencies": {
     "@discordjs/opus": "^0.3.2",
     "acorn": "^7.4.0",
-    "better-sqlite3": "^7.1.0",
+    "better-sqlite3": "^7.1.2",
     "discord.js": "github:discordjs/discord.js",
     "dotenv": "^6.2.0",
     "enmap": "^5.7.0",
