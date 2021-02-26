@@ -20,7 +20,7 @@
     "better-sqlite3": "^7.1.2",
     "discord.js": "github:discordjs/discord.js",
     "dotenv": "^6.2.0",
-    "enmap": "^5.8.2",
+    "enmap": "^5.8.4",
     "ffmpeg": "^0.0.4",
     "ffmpeg-static": "^4.2.7",
     "i18n": "^0.13.2",
