@@ -1,14 +1,14 @@
 /**
  * http://usejsdoc.org/
  */
+const config = require('config');
 module.exports = async (client) => {
     //console.log(`Ready to serve in ${client.channels.cache.size} channels on ${client.guilds.size} servers, for a total of ${client.users.size} users.`);
-    console.log(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);
-    console.log(`Logged in as ${client.user.tag}!`);
+    console.info(`Bot has started, with ${client.users.cache.size} users, in ${client.channels.cache.size} channels of ${client.guilds.cache.size} guilds.`);
+    console.info(`Logged in as ${client.user.tag}!`);
 
-    client.user.setActivity("my bits", { type: "WATCHING"})
+    await client.user.setActivity("my bits", {type: "WATCHING"})
 
-    
     // const guild = client.guilds.cache.get("149664473240698880");
     // if (!guild) {
     //     throw new Error('Cannot find guild.')

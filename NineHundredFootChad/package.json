@@ -1,5 +1,5 @@
 {
-  "name": "NineHundredFootChad",
+  "name": "ninehundredfootchad",
   "version": "1.0.0",
   "description": "",
   "main": "9fchad.js",
@@ -18,7 +18,7 @@
     "@discordjs/opus": "^0.3.2",
     "acorn": "^7.4.0",
     "better-sqlite3": "^7.1.2",
-    "discord.js": "github:discordjs/discord.js",
+    "discord.js": "^12.5.1",
     "dotenv": "^6.2.0",
     "enmap": "^5.8.2",
     "ffmpeg": "^0.0.4",
@@ -38,6 +38,7 @@
     "wave-resampler": "^1.0.0"
   },
   "devDependencies": {
+    "config": "^3.3.3",
     "eslint": "^5.8.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",

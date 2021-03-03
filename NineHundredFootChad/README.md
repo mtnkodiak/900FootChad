@@ -6,7 +6,11 @@
 
 ## Usage
 
+Default setup is for canary Chad.  To run in production mode, on the 9FA server, use the following:
 
+`$ export NODE_ENV=production
+`
+before running the app via node.js.
 
 ## Developing
 

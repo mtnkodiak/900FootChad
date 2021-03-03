@@ -1,5 +1,5 @@
 require('dotenv').config();
-const config = require('../config');
+const config = require('config');
 const { Transform } = require('stream');
 const websocket = require('ws');
 const fs = require('fs');
@@ -11,12 +11,13 @@ const playChad = require('../voiceutils/playChad.js')
 
 module.exports = async (client, member, speaking) => { 
     
-    console.log("--------In guildMemberSpeaking event handler...");
-    console.log("\tclient = " + client);
-    console.log("\tclient.voiceConnection = " + client.voiceConnection);
-    console.log("\tclient.okEnabled = " + client.okEnabled);
-    console.log("\tspeaking = " + speaking);
-    console.log("\tmember = " + member);
+    console.group("In guildMemberSpeaking() event handler:");
+    console.log("client = " + client.toString());
+    console.log("client.voiceConnection = " + client.voiceConnection.toString());
+    console.log("client.okEnabled = " + client.okEnabled);
+    console.log("speaking = " + speaking);
+    console.log("member = " + member);
+    console.groupEnd();
 
     var transcript = "EMPTY";
 
@@ -38,8 +39,9 @@ module.exports = async (client, member, speaking) => {
     //const audioStream = receiver.createStream(member, { mode: "pcm" });
 
     //    const ws = new websocket('wss://api.alphacephei.com/asr/en/');
-    console.log("creating new websocket to vosk server (with callbacks): " + `ws://${config.voskServer}`);
-    const ws = new websocket(`ws://${config.voskServer}`);
+    const voskServer = client.config.get('Chad.voskServer');
+    console.log("creating new websocket to vosk server (with callbacks): " + `ws://${voskServer}`);
+    const ws = new websocket(`ws://${voskServer}`);
 
     ws.on('open', async function open() {
         console.log("In 'open' callback...");
@@ -143,57 +145,9 @@ module.exports = async (client, member, speaking) => {
     ws.on('error', function error(err) {
         console.log("websocket ERROR callback.  error=" + err);
     });
-    
-
-    // const requestConfig = {
-    //     encoding: 'LINEAR16',
-    //     sampleRateHertz: 48000,
-    //     languageCode: 'en-US'
-    // };
-    // const request = {
-    //     config: requestConfig
-    // };
-    // const recognizeStream = googleSpeechClient
-    //     .streamingRecognize(request)
-    //     .on('error', console.error)
-    //     .on('data', async response => {
-    //         const transcription = response.results
-    //             .map(result => result.alternatives[0].transcript)
-    //             .join('\n')
-    //             .toLowerCase();
 
     console.log(`Transcript: ${transcript}`);
 
-    // //play an audio file if keyword is detected
-    // if (client.okEnabled == true) {
-    //     if (transcript.includes("okay")) {
-    //         console.log(`I just heard ${member.displayName} say OK!  Calling playChad)...`);
-    //         await playChad.playChad(member.voice.channel, 1);
-    //     }
-    // }
-
-    // if (client.secretWordGame == true) {
-    //     //console.log("looking for secret word: " + client.secretWordGameWord);
-    //     if (transcript.includes(client.secretWordGameWord)) {
-    //         client.secretWordGameChannel.send("OMG you said the secret word!  It was: " + client.secretWordGameWord);
-    //         client.secretWordGameChannel.send(`${member.displayName} was the winner!`);
-  
-    //         client.secretWordGameChannel.send("Context: " + transcript);
-                
-    //         client.secretWordGameWord = "";
-    //         client.secretWordGame = false;
-
-    //         await playChad.playCelebration(member.voice.channel);
-    //     }
-    // }
-
-    // const convertTo1ChannelStream = new ConvertTo1ChannelStream();
-
-    // audioStream.pipe(convertTo1ChannelStream).pipe(recognizeStream);
-
-    // audioStream.on('end', async () => {
-    //     console.log(`I'm done listening to ${member.displayName}`);
-    // })
 };
 
 function convertBufferTo1Channel(buffer) {
