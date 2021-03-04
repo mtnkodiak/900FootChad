@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  chad:
+    build: .
+  vosk:
+    image:
+      "alphacep/kaldi-en:latest"
+    ports:
+      - "2700:2700"
