@@ -15,7 +15,7 @@ discordClient.commands = new Discord.Collection(); // Collection for all command
 // https://anidiots.guide/first-bot/a-basic-command-handler
 fs.readdir("./events/", (err, files) => {
     if (err) return console.error(err);
-    console.group("Reading Events:");
+    console.group("Reading events:");
     files.forEach(file => {
         const event = require(`./events/${file}`);
         let eventName = file.split(".")[0];
@@ -30,7 +30,7 @@ fs.readdir("./events/", (err, files) => {
 // read in all the custom commands
 fs.readdir("./commands/", (err, files) => {
     if (err) return console.error(err);
-    console.group("Reading Custom Commands:");
+    console.group("Reading custom commands:");
     files.forEach(file => {
         if (!file.endsWith(".js")) return;
         let command = require(`./commands/${file}`);
@@ -44,6 +44,8 @@ fs.readdir("./commands/", (err, files) => {
 try {
     console.log("Logging in...");
     const apiToken = config.get('Chad.discordApiToken');
+    console.log("Got apiToken: " + apiToken);
+
     discordClient.login(apiToken);
     discordClient.secretWordGame = false;
     discordClient.okEnabled = true;

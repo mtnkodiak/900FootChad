@@ -1,12 +1,12 @@
 FROM node:15.8.0
-ENV NODE_ENV=production
+ENV NODE_ENV=development
 
 WORKDIR /app
 
 COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install --production
+RUN npm install
 
 COPY . .
 
-CMD [ "node", "9fchad.js" ]
+CMD [ "npx", "nodemon", "9fchad.js" ]

@@ -2,6 +2,8 @@ version: "3.8"
 services:
   chad:
     build: .
+    depends_on:
+      - vosk
   vosk:
     image:
       "alphacep/kaldi-en:latest"

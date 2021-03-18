@@ -38,8 +38,9 @@ module.exports = async (client, member, speaking) => {
     // this creates a 16-bit signed PCM, stereo 48KHz stream
     //const audioStream = receiver.createStream(member, { mode: "pcm" });
 
-    //    const ws = new websocket('wss://api.alphacephei.com/asr/en/');
     const voskServer = client.config.get('Chad.voskServer');
+    // const voskServer = "vosk:2700";
+
     console.log("creating new websocket to vosk server (with callbacks): " + `ws://${voskServer}`);
     const ws = new websocket(`ws://${voskServer}`);
 
