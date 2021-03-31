@@ -13,7 +13,7 @@ module.exports = async (client, member, speaking) => {
     
     console.group("In guildMemberSpeaking() event handler:");
     console.log("client = " + client.toString());
-    console.log("client.voiceConnection = " + client.voiceConnection.toString());
+    console.log("client.voiceConnection = " + client.voiceConnection);
     console.log("client.okEnabled = " + client.okEnabled);
     console.log("speaking = " + speaking);
     console.log("member = " + member);

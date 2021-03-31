@@ -4,7 +4,6 @@ services:
     build: .
     depends_on:
       - vosk
-
   vosk:
     image:
       "alphacep/kaldi-en:latest"

@@ -5,6 +5,8 @@ WORKDIR /app
 
 COPY ["package.json", "package-lock.json*", "./"]
 
+RUN npm install bindings --save
+RUN npm install node-libsamplerate --save
 RUN npm install
 
 COPY . .
