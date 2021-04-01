@@ -2,6 +2,8 @@ version: "3.8"
 services:
   chad:
     build: .
+      args:
+        - NODE_ENV=production
     depends_on:
       - vosk
   vosk:
@@ -9,4 +11,3 @@ services:
       "alphacep/kaldi-en:latest"
     ports:
       - "2700"
-

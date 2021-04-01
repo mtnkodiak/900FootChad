@@ -1,5 +1,6 @@
 FROM node:15.8.0
-ENV NODE_ENV=development
+
+ENV NODE_ENV $NODE_ENV
 
 RUN apt-get -y update
 RUN apt-get -y install cmake
