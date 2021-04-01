@@ -1,9 +1,10 @@
 version: "3.8"
 services:
   chad:
-    build: .
+    build:
+      context: .
       args:
-        - NODE_ENV=production
+        NODE_ENV: production
     depends_on:
       - vosk
   vosk:
