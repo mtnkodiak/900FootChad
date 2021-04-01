@@ -1,6 +1,6 @@
 const playChad = require("../voiceutils/playChad");
 
-exports.run = (client, message, reps) => {
+exports.run = async (client, message, reps) => {
 
 	const Discord = require('discord.js');
 
@@ -14,8 +14,8 @@ exports.run = (client, message, reps) => {
 		message.reply("Syntax: =ok [n] where n is 1-20");
 		return;
 	}
-
 	reps = Math.floor(reps);
+
 
 	if (reps > 20) {
 		console.log('TOO MANY OKS');
@@ -31,8 +31,9 @@ exports.run = (client, message, reps) => {
 
 	// Only try to join the sender's voice channel if they are in one themselves
 	if (message.member.voice.channel) {
+		client.voiceConnection = await message.member.voice.channel.join();
 
-		playChad.playChad(message.member.voice.channel, reps);
+		await playChad.playChad(message.member.voice.channel, reps);
 
 	} else {
 		message.reply('You need to join a voice channel first!');
