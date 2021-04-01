@@ -1,12 +1,13 @@
 FROM node:15.8.0
 ENV NODE_ENV=development
 
+RUN apt-get -y update
+RUN apt-get -y install cmake
+
 WORKDIR /app
 
 COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install bindings --save
-RUN npm install node-libsamplerate --save
 RUN npm install
 
 COPY . .
