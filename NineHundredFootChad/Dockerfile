@@ -1,6 +1,7 @@
 FROM node:15.8.0
 
-ENV NODE_ENV $NODE_ENV
+ARG NODE_ENV=default
+ENV NODE_ENV=$NODE_ENV
 
 RUN apt-get -y update
 RUN apt-get -y install cmake

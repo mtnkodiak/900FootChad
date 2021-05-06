@@ -34,7 +34,7 @@ To run the docker implementation of this bot, use the following commands in this
 
 OR
 
-`docker-compose up -chad` //production
+`docker-compose up chad` //production
 
 If you get an error like:
 
