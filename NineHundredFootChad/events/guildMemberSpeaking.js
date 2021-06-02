@@ -38,8 +38,10 @@ module.exports = async (client, member, speaking) => {
     //const audioStream = receiver.createStream(member, { mode: "pcm" });
 
     //    const ws = new websocket('wss://api.alphacephei.com/asr/en/');
-    console.log("creating new websocket to vosk server (with callbacks): " + `ws://${config.voskServer}`);
-    const ws = new websocket(`ws://${config.voskServer}`);
+    //console.log("creating new websocket to vosk server (with callbacks): " + `ws://${config.voskServer}`);
+    console.log("creating new websocket to vosk server (with callbacks): " + `ws://localhost:2700`);
+    // const ws = new websocket(`ws://${config.voskServer}`);
+    const ws = new websocket(`ws://localhost:2700`);
 
     ws.on('open', async function open() {
         console.log("In 'open' callback...");

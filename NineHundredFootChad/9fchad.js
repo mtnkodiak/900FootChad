@@ -41,6 +41,8 @@ fs.readdir("./commands/", (err, files) => {
 
 try {
     console.log("Logging in...");
+    console.log("with config.discordApiToken: " + config.discordApiToken);
+
     discordClient.login(config.discordApiToken);
     discordClient.secretWordGame = false;
     discordClient.okEnabled = true;
