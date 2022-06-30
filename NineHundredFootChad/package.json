@@ -29,7 +29,7 @@
     "node-libsamplerate": "^1.0.0",
     "node-wav": "0.0.2",
     "nodemon": "^2.0.6",
-    "npm-check-updates": "^7.1.1",
+    "npm-check-updates": "^15.0.0",
     "pino": "^5.13.0",
     "pino-pretty": "^3.2.0",
     "random-words": "^1.1.1",
