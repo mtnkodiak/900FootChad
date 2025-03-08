@@ -1,0 +1,15 @@
+version: "3"
+services:
+  chad:
+    build:
+      context: .
+      args:
+        NODE_ENV: production
+    depends_on:
+      - vosk
+  vosk:
+    build:
+      context: ./vosk-server/docker
+      dockerfile: Dockerfile.kaldi-en
+    ports:
+      - "2700"

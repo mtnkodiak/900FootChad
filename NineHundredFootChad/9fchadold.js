@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token } = require('./config.json');
+const { prefix, token } = require('./config/default.json');
 // Retrieve
 var MongoClient = require('mongodb').MongoClient;
 
