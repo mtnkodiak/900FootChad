@@ -1,4 +1,5 @@
-/config.json
+/config/default.json
+/config/production.json
 /node_modules/
 /user_audio
 /user_audio-ORIG
