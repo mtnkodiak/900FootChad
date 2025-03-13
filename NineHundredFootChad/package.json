@@ -31,7 +31,7 @@
     "node-gyp": "^10.2.0",
     "node-libsamplerate": "^1.0.0",
     "node-wav": "0.0.2",
-    "nodemon": "^3.0.0",
+    "nodemon": "^3.1.9",
     "npm-check-updates": "^17.0.0",
     "pino": "^5.13.0",
     "pino-pretty": "^3.2.0",
