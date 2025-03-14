@@ -26,7 +26,7 @@
     "enmap": "^5.9.9",
     "ffmpeg": "^0.0.4",
     "ffmpeg-static": "^4.3.0",
-    "i18n": "^0.14.0",
+    "i18n": "^0.15.1",
     "mongodb": "^3.6.10",
     "node-gyp": "^10.2.0",
     "node-libsamplerate": "^1.0.0",
@@ -36,7 +36,7 @@
     "pino": "^5.13.0",
     "pino-pretty": "^3.2.0",
     "random-words": "^1.1.2",
-    "vosk": "^0.3.21",
+    "vosk": "^0.3.39",
     "vosk-js": "^0.3.0",
     "wav": "^1.0.2",
     "wave-resampler": "^1.0.0"
