@@ -20,7 +20,7 @@
     "acorn": "^7.4.0",
     "better-sqlite3": "^8.6.0",
     "bindings": "^1.5.0",
-    "config": "^3.3.9",
+    "config": "^3.3.12",
     "discord.js": "^14.18.0",
     "dotenv": "^6.2.0",
     "enmap": "^5.9.9",
@@ -42,7 +42,7 @@
     "wave-resampler": "^1.0.0"
   },
   "devDependencies": {
-    "config": "^3.3.9",
+    "config": "^3.3.12",
     "eslint": "^5.8.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
