@@ -28,7 +28,7 @@
     "ffmpeg-static": "^4.3.0",
     "i18n": "^0.15.1",
     "mongodb": "^3.6.10",
-    "node-gyp": "^10.2.0",
+    "node-gyp": "^10.3.1",
     "node-libsamplerate": "^1.0.0",
     "node-wav": "0.0.2",
     "nodemon": "^3.1.9",
