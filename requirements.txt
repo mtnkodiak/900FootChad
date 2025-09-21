@@ -2,7 +2,7 @@
 py-cord
 
 # Voice receive extension for discord.py/PyCord
-discord-ext-voice-recv
+# discord-ext-voice-recv
 
 # Offline speech recognition engine
 vosk
