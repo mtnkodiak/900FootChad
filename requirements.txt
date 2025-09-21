@@ -1,0 +1,14 @@
+# Discord API wrapper
+py-cord
+
+# Voice receive extension for discord.py/PyCord
+discord-ext-voice-recv
+
+# Offline speech recognition engine
+vosk
+
+# Environment variable loader
+python-dotenv
+
+# Additional utilities (optional).  If you plan to extend the bot with AI/NLP,
+# you can add packages here.
