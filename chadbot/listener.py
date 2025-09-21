@@ -38,13 +38,17 @@ class ChadVoiceListener(voice_recv.BasicSink):
         self.keyword = keyword.lower()
         self.cooldown = cooldown
         self.last_trigger: float = 0.0
-        # Request PCM frames (decoded) instead of opus; set attribute on instance
-        self.wants_opus = False
 
-        def callback(user: Optional[discord.Member], pcm_data: bytes) -> None:
+        def callback(user: Optional[discord.Member], data: voice_recv.VoiceData) -> None:
+            # Extract PCM bytes from VoiceData object
+            pcm_data = data.pcm
             self._handle_audio(pcm_data)
 
         super().__init__(callback)
+
+    def wants_opus(self) -> bool:
+        """Return False to request PCM frames instead of opus."""
+        return False
 
     def _handle_audio(self, pcm_data: bytes) -> None:
         """Process an incoming PCM chunk and trigger the audio player if needed."""
