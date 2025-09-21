@@ -16,10 +16,10 @@ import discord
 from discord.ext import commands
 from discord.ext import voice_recv
 
-from .config import ChadConfig
-from .recognizer import BaseRecognizer, VoskRecognizer
-from .audio_player import AudioPlayer
-from .listener import ChadVoiceListener
+from chadbot.config import ChadConfig
+from chadbot.recognizer import BaseRecognizer, VoskRecognizer
+from chadbot.audio_player import AudioPlayer
+from chadbot.listener import ChadVoiceListener
 
 
 class ChadBotClient(commands.Bot):
@@ -32,7 +32,7 @@ class ChadBotClient(commands.Bot):
         intents.voice_states = True
         # If you plan to add message commands in the future, enable message content
         intents.message_content = True
-        super().__init__(command_prefix="!", intents=intents, help_command=None)
+        super().__init__(command_prefix="~", intents=intents, help_command=None)
 
         self.recognizer: Optional[BaseRecognizer] = None
         self.audio_player: Optional[AudioPlayer] = None
